@@ -12,10 +12,27 @@ class Device
 {
 public:
   virtual std::string getName();
-  virtual std::string getDataAsString();
+  virtual std::string getDataAsString() = 0;
+};
+
+class DeviceA : public Device
+{
+public:
+  std::string getDataAsString() override { return this->data; }
+  std::string getName() override { return this->name; }
 private:
-  std::string name;
-  int data;
+  std::string name = "Device A";
+  std::string data;
+};
+
+class DeviceB : public Device
+{
+public:
+  std::string getDataAsString() override;
+  std::string getName() override { return this->name; }
+private:
+  std::string name = "Device B";
+  std::vector<int> data;
 };
 
 class DeviceEvent
