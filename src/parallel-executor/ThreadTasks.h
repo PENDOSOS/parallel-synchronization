@@ -8,6 +8,7 @@ void taskForThread(std::function<void(const std::shared_ptr<EventQueue>&, const 
   while (true)
   {
     auto event = queue->pop(std::chrono::seconds(10));
-    std::cout << event->toString() << std::endl;
+    if (event)
+      std::cout << event->toString() << std::endl;
   }
 }

@@ -13,11 +13,23 @@ int main()
   std::shared_ptr<Device> deviceA = std::make_shared<DeviceA>();
   std::shared_ptr<Device> deviceB = std::make_shared<DeviceB>();
 
-  std::function<void(const std::shared_ptr<EventQueue>&, const std::shared_ptr<Device>&)> readFromA = readA;
-  std::function<void(const std::shared_ptr<EventQueue>&, const std::shared_ptr<Device>&)> readFromB = readB;
+  //std::function<void(const std::shared_ptr<EventQueue>&, const std::shared_ptr<Device>&)> readFromA = readA;
+  //std::function<void(const std::shared_ptr<EventQueue>&, const std::shared_ptr<Device>&)> readFromB = readB;
 
-  std::thread threadA(taskForThread, readFromA, eventQueue, deviceA);
-  std::thread threadB(taskForThread, readFromB, eventQueue, deviceB);
+  std::thread threadA(readA, eventQueue, deviceA);
+  std::thread threadB(readB, eventQueue, deviceB);
+
+  while (true)
+  {
+    auto event = eventQueue->pop(std::chrono::seconds(0));
+    if (event)
+      std::cout << event->toString() << std::endl;
+    else
+    {
+      std::cout << "Work with devices ended" << std::endl;
+      break;
+    }
+  }
 
   return 0;
 }

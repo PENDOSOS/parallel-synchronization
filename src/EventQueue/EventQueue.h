@@ -6,8 +6,6 @@
 class EventQueue
 {
 public:
-  EventQueue() : queue() {};
-
   // Положить сообщение в очередь
   void push(const std::shared_ptr<const Event>& event);
 

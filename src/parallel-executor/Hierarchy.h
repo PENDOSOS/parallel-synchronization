@@ -12,16 +12,16 @@ public:
 class Device
 {
 public:
-  //Device() = default;
+  Device() = default;
 
-  virtual std::string getName() const;
+  virtual std::string getName() const = 0;
   virtual std::string getDataAsString() = 0;
 };
 
 class DeviceA : public Device
 {
 public:
-  //DeviceA() = default;
+  DeviceA() = default;
 
   std::string getDataAsString() override;
   std::string getName() const override { return "Device A"; }
