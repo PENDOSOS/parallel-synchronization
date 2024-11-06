@@ -4,7 +4,7 @@
 #include "Hierarchy.h"
 #include "../EventQueue/EventQueue.h"
 
-void readA(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Device>& device, int callCount = -1)
+void readA(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Device>& device, int callCount)
 {
   int elapsedCalls = 0;
   if (callCount == -1) // == -1 - количество вызовов функции не ограничено
@@ -31,7 +31,7 @@ void readA(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Devic
   }
 }
 
-void readB(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Device>& device, int callCount = -1)
+void readB(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Device>& device, int callCount)
 {
   int elapsedCalls = 0;
   if (callCount == -1) // == -1 - количество вызовов функции не ограничено
