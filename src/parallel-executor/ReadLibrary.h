@@ -4,9 +4,12 @@
 #include "Hierarchy.h"
 #include "../EventQueue/EventQueue.h"
 
-void readA(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Device>& device)
+void readA(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Device>& device, int callCount = -1)
 {
-  while (true)
+  int elapsedCalls = 0;
+  if (callCount == -1) // == -1 - количество вызовов функции не ограничено
+    elapsedCalls = -2;
+  while (elapsedCalls < callCount)
   {
     auto start = std::chrono::high_resolution_clock::now();
     
@@ -23,12 +26,17 @@ void readA(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Devic
     }
 
     queue->push(std::make_shared<const WorkDoneEvent>(device));
+    if (callCount != -1)
+      elapsedCalls++;
   }
 }
 
-void readB(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Device>& device)
+void readB(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Device>& device, int callCount = -1)
 {
-  while (true)
+  int elapsedCalls = 0;
+  if (callCount == -1) // == -1 - количество вызовов функции не ограничено
+    elapsedCalls = -2;
+  while (elapsedCalls < callCount)
   {
     auto start = std::chrono::high_resolution_clock::now();
 
@@ -45,5 +53,7 @@ void readB(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Devic
     }
 
     queue->push(std::make_shared<const WorkDoneEvent>(device));
+    if (callCount != -1)
+      elapsedCalls++;
   }
 }
