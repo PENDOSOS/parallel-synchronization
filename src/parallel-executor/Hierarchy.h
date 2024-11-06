@@ -18,21 +18,15 @@ public:
 class DeviceA : public Device
 {
 public:
-  std::string getDataAsString() override { return this->data; }
-  std::string getName() override { return this->name; }
-private:
-  std::string name = "Device A";
-  std::string data;
+  std::string getDataAsString() override;
+  std::string getName() override { return "Device A"; }
 };
 
 class DeviceB : public Device
 {
 public:
   std::string getDataAsString() override;
-  std::string getName() override { return this->name; }
-private:
-  std::string name = "Device B";
-  std::vector<int> data;
+  std::string getName() override { return "Device B"; }
 };
 
 class DeviceEvent : public Event
@@ -46,17 +40,27 @@ private:
 class DataEvent : public DeviceEvent
 {
 public:
-  std::string toString() override;
+  std::string toString() override
+  {
+    return "Reading data from ";
+  }
 };
 
 class WorkDoneEvent : public DeviceEvent
 {
 public:
-  std::string toString() override;
+  std::string toString() override 
+  {
+    //std::string deviceName = this->device->getName();
+    return "Work done!"; 
+  }
 };
 
 class StartedEvent : public DeviceEvent
 {
 public:
-  std::string toString() override;
+  std::string toString() override
+  {
+    return "Started work...";
+  }
 };
