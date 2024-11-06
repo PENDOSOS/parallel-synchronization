@@ -35,27 +35,27 @@ private:
   std::vector<int> data;
 };
 
-class DeviceEvent
+class DeviceEvent : public Event
 {
 public:
-  DeviceEvent(std::shared_ptr<Device> device);
+  DeviceEvent(std::shared_ptr<Device> device) : device(device) {}
 private:
   std::shared_ptr<Device> device;
 };
 
-class DataEvent : public Event
+class DataEvent : public DeviceEvent
 {
 public:
   std::string toString() override;
 };
 
-class WorkDoneEvent : public Event
+class WorkDoneEvent : public DeviceEvent
 {
 public:
   std::string toString() override;
 };
 
-class StartedEvent : public Event
+class StartedEvent : public DeviceEvent
 {
 public:
   std::string toString() override;
