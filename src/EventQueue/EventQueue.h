@@ -1,11 +1,13 @@
 #pragma once
 
-#include "includes.h"
-#include "Hierarchy.h"
+#include "../parallel-executor/includes.h"
+#include "../parallel-executor/Hierarchy.h"
 
 class EventQueue
 {
 public:
+  EventQueue() : queue() {};
+
   // Положить сообщение в очередь
   void push(const std::shared_ptr<const Event>& event);
 

@@ -1,5 +1,5 @@
 #include "Hierarchy.h"
-#include "Helpers.h"
+#include "helpers.h"
 
 std::string DeviceA::getDataAsString()
 {
