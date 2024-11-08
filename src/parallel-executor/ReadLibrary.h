@@ -2,7 +2,7 @@
 
 #include "includes.h"
 #include "Hierarchy.h"
-#include "../EventQueue/EventQueue.h"
+#include "EventQueue.h"
 
 void readA(const std::shared_ptr<EventQueue>& queue, const std::shared_ptr<Device>& device, int callCount)
 {
