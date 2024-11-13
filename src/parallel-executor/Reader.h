@@ -3,6 +3,10 @@
 #include "EventQueue.h"
 #include "Hierarchy.h"
 
+/*!
+ * \brief класс, считывающий данные с устройств
+ */
+
 class Reader
 {
 public:
