@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 #include "../src/parallel-executor/helpers.h"
+
+#include <gtest/gtest.h>
 
 #include <string>
 #include <algorithm>
@@ -15,8 +16,8 @@ TEST(RandomNumberTest, GeneratesNumberInRange)
 
 TEST(RandomNumberTest, GeneratesDifferentNumbers) 
 {
-  int start = 10;
-  int end = 20;
+  int start = 1;
+  int end = 500;
   int num1 = randomNumber(start, end);
   int num2 = randomNumber(start, end);
   EXPECT_NE(num1, num2);

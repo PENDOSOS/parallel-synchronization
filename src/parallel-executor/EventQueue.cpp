@@ -2,29 +2,28 @@
 
 void EventQueue::push(const std::shared_ptr<const Event>& event)
 {
-  std::lock_guard<std::mutex> lk(this->mtx);
-  this->queue.push(event);
-  cv.notify_one();
+  std::lock_guard<std::mutex> lk(this->m_mtx);
+  this->m_queue.push(event);
+  m_cv.notify_one();
 }
 
 std::shared_ptr<const Event> EventQueue::pop(const std::chrono::seconds& duration)
 {
-  std::unique_lock<std::mutex> lk(this->mtx);
-  cv.wait(lk, [this] { return !this->queue.empty(); });
-  auto start = std::chrono::high_resolution_clock::now();
-  auto end = std::chrono::high_resolution_clock::now();
-  auto elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(end - start);
-  while (this->queue.empty() && elapsedTime.count() < duration.count())
+  std::unique_lock<std::mutex> lock(m_mtx);
+  if (m_queue.empty())
   {
-    end = std::chrono::high_resolution_clock::now();
-    elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+    if (m_cv.wait_for(lock, duration) == std::cv_status::timeout)
+    {
+      return nullptr;
+    }
   }
-  if (!this->queue.empty())
+
+  if (!m_queue.empty())
   {
-    std::shared_ptr<const Event> event = this->queue.front();
-    this->queue.pop();
-    mtx.unlock();
+    std::shared_ptr<const Event> event = m_queue.front();
+    m_queue.pop();
     return event;
   }
+
   return nullptr;
 }
