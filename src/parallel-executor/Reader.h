@@ -13,7 +13,7 @@ public:
         throw std::runtime_error("nullptr received");
     }
 
-  void run(size_t loopCountA, size_t loopCountB, size_t crushIndexA = SIZE_MAX, size_t crushIndexB = SIZE_MAX, size_t duration);
+  void run(size_t duration, size_t loopCountA, size_t loopCountB, size_t crushIndexA = SIZE_MAX, size_t crushIndexB = SIZE_MAX);
 private:
   void read(std::shared_ptr<Device> device, std::chrono::seconds sleepDuration, size_t loopCount, size_t crushIndex);
 private: 

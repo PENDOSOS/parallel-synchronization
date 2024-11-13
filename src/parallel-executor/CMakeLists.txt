@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15.0)
 cmake_policy(SET CMP0016 NEW)
 
-set(PARALLEL_EXECUTOR_PROJECT_NAME parallel_executor)
+set(PARALLEL_EXECUTOR_PROJECT_NAME parallel-executor)
 set(CMAKE_CXX_STANDARD 14)
 
 set(HEADERS 
@@ -15,6 +15,7 @@ set(HEADERS
 set(SOURCES
     EventQueue.cpp
     Hierarchy.cpp
+    helpers.cpp
     Reader.cpp
 )
 

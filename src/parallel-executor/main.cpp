@@ -5,8 +5,6 @@
 
 #include <iostream>
 
-
-
 int main(int argc, char* argv[]) // возможные аргументы: -readA, -readB, -crushA, -crushB, -duration
 {
   try
@@ -38,6 +36,7 @@ int main(int argc, char* argv[]) // возможные аргументы: -read
     std::cout << "loopCountB was set to " << callCountReadB << "\n";
     std::cout << "crushIndexA was set to " << crushA << "\n";
     std::cout << "crushIndexB was set to " << crushB << "\n";
+    std::cout << "duration was set to " << duration << "\n";
 
     Reader reader(std::make_shared<EventQueue>(), std::make_shared<DeviceA>(), std::make_shared<DeviceB>());
     reader.run(callCountReadA, callCountReadB, crushA, crushB, duration);

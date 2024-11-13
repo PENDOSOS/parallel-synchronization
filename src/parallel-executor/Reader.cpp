@@ -1,6 +1,6 @@
 #include "Reader.h"
 
-void Reader::run(size_t loopCountA, size_t loopCountB, size_t crushIndexA = SIZE_MAX, size_t crushIndexB = SIZE_MAX, size_t duration)
+void Reader::run(size_t duration, size_t loopCountA, size_t loopCountB, size_t crushIndexA, size_t crushIndexB)
 {
   std::thread readA(&Reader::read, this, m_deviceA, std::chrono::seconds(1), loopCountA, crushIndexA);
   std::thread readB(&Reader::read, this, m_deviceB, std::chrono::seconds(5), loopCountB, crushIndexB);

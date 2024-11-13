@@ -27,7 +27,7 @@ TEST(Reader, RunDefaultTest)
 
   Reader reader(queue, deviceA, deviceB);
 
-  std::string stream = captureOutput([&]() { reader.run(1, 1); });
+  std::string stream = captureOutput([&]() { reader.run(6, 1, 1); });
 
   EXPECT_TRUE(stream.find("Started work with Device A") != std::string::npos);
   EXPECT_TRUE(stream.find("Data from Device A is: ") != std::string::npos);
@@ -46,7 +46,7 @@ TEST(Reader, RunCrushATest)
 
   Reader reader(queue, deviceA, deviceB);
 
-  std::string stream = captureOutput([&]() { reader.run(2, 1, 1); });
+  std::string stream = captureOutput([&]() { reader.run(6, 2, 1, 1); });
 
   EXPECT_TRUE(stream.find("Started work with Device A") != std::string::npos);
   EXPECT_TRUE(stream.find("Data from Device A is: ") != std::string::npos);
@@ -65,7 +65,7 @@ TEST(Reader, RunCrushBTest)
 
   Reader reader(queue, deviceA, deviceB);
 
-  std::string stream = captureOutput([&]() { reader.run(1, 2, 1, 1); });
+  std::string stream = captureOutput([&]() { reader.run(6, 1, 2, 1, 1); });
 
   EXPECT_TRUE(stream.find("Started work with Device A") != std::string::npos);
   EXPECT_TRUE(stream.find("Data from Device A is: ") != std::string::npos);
@@ -84,7 +84,7 @@ TEST(Reader, RunCrushABTest)
 
   Reader reader(queue, deviceA, deviceB);
 
-  std::string stream = captureOutput([&]() { reader.run(2, 2, 1, 1); });
+  std::string stream = captureOutput([&]() { reader.run(6, 2, 2, 1, 1); });
 
   EXPECT_TRUE(stream.find("Started work with Device A") != std::string::npos);
   EXPECT_TRUE(stream.find("Data from Device A is: ") != std::string::npos);
